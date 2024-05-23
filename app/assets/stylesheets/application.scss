@@ -10,3 +10,14 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "devise/index";
+
+body {
+    background-color: #272b30;
+    color: white;
+}
+
+#main-container {
+    max-width: 1250px;
+    margin: 0 auto;
+}

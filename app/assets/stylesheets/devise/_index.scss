@@ -1,0 +1,26 @@
+#devise-form_container {
+    margin: 70px auto;
+    width: 500px;
+
+    h1 {
+        text-align: center;
+        color: $my-primary;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .form-actions {
+        margin: 30px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        input {
+            background-color: #4eb76e;
+            color: white;
+            &:hover {
+                background-color: #4da066;
+            }
+        }
+    }
+}
