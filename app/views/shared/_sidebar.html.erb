@@ -1,0 +1,18 @@
+<div id="sidebar-container" data-controller="sidebar">
+    <%= link_to "#", class: "link-side-nav", "data-sidebar-target": "link" do %>
+      <span>Utilisateurs</span>
+    <% end %>
+
+    <%= link_to "#", class: "link-side-nav", "data-sidebar-target": "link" do %>
+      <span>Tournois</span>
+    <% end %>
+
+    <div class="link-side-nav <%= 'active' if current_page?(medium_index_path) %>" data-sidebar-media-panel-is-open-value="<%= false %>" data-action="click->sidebar#toggleDropdown">
+        <span>Médiathèque</span>
+    </div>
+    <ul class="dropdown-container d-none" data-sidebar-target="mediaDropdownContainer">
+        <% @categories.each do |category| %>
+            <%= render "shared/category", category: category %>
+        <% end %>
+    </ul>
+</div>

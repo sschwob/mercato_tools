@@ -10,9 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_23_112622) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_24_073431) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "media", force: :cascade do |t|
+    t.bigint "media_kind_id", null: false
+    t.string "categorisable_type", null: false
+    t.bigint "categorisable_id", null: false
+    t.string "name", null: false
+    t.string "language", default: "FR", null: false
+    t.string "source", null: false
+    t.text "description", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["categorisable_type", "categorisable_id"], name: "index_media_on_categorisable"
+    t.index ["media_kind_id"], name: "index_media_on_media_kind_id"
+  end
+
+  create_table "media_kinds", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "player_infos", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -23,6 +49,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_23_112622) do
     t.index ["user_id"], name: "index_player_infos_on_user_id"
   end
 
+  create_table "subcategories", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_subcategories_on_category_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -31,6 +65,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_23_112622) do
     t.datetime "remember_created_at"
     t.string "username", null: false
     t.integer "ally_code", null: false
+    t.string "discord_id"
     t.boolean "admin", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -40,5 +75,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_23_112622) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "media", "media_kinds"
   add_foreign_key "player_infos", "users"
+  add_foreign_key "subcategories", "categories"
 end
