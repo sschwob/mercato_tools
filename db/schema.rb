@@ -22,15 +22,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_073431) do
 
   create_table "media", force: :cascade do |t|
     t.bigint "media_kind_id", null: false
-    t.bigint "subcategory_id", null: false
+    t.string "categorisable_type", null: false
+    t.bigint "categorisable_id", null: false
     t.string "name", null: false
     t.string "language", default: "FR", null: false
     t.string "source", null: false
     t.text "description", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["categorisable_type", "categorisable_id"], name: "index_media_on_categorisable"
     t.index ["media_kind_id"], name: "index_media_on_media_kind_id"
-    t.index ["subcategory_id"], name: "index_media_on_subcategory_id"
   end
 
   create_table "media_kinds", force: :cascade do |t|
@@ -75,7 +76,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_073431) do
   end
 
   add_foreign_key "media", "media_kinds"
-  add_foreign_key "media", "subcategories"
   add_foreign_key "player_infos", "users"
   add_foreign_key "subcategories", "categories"
 end

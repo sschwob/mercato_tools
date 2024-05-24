@@ -1,0 +1,12 @@
+<li class="sidebar-category" data-action="click->sidebar#toggleCategory" data-sidebar-target="category">
+    <% if category.has_subcategories? %>
+        <%= category.name %>
+        <ul class="d-none">
+            <% category.subcategories.each do |subcategory| %>
+                <li><%= link_to subcategory.name, medium_index_path(id: subcategory.id, type: "Subcategory") %></li>
+            <% end %>
+        </ul>
+    <% else %>
+        <%= link_to category.name, medium_index_path(id: category.id, type: "Category") %>
+    <% end %>
+</li>

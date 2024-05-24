@@ -9,15 +9,27 @@
 
 // Your CSS partials
 @import "components/index";
+@import "devise/index";
+@import "medium/index";
 @import "pages/index";
 @import "devise/index";
 
-body {
-    background-color: #272b30;
-    color: white;
-}
-
 #main-container {
-    max-width: 1250px;
-    margin: 0 auto;
+    margin-top: 62px;
+    flex-grow: 1;
+    width: 100%;
+    background-color: $dark-background;
+    color: white;
+    padding: 20px 30px;
+    overflow-y: auto;
+    min-height: calc(100vh - 62px);
+  }
+
+a {
+    text-decoration: none;
+    color: $my-primary;
+
+    &:hover {
+        color: inherit;
+    }
 }

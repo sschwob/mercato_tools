@@ -1,0 +1,6 @@
+<h1 class="text-center"><%= @medias.first.categorisable.name %></h1>
+<div id="media-container">
+    <% @medias.each do |media| %>
+        <%= render "media_card", media: media %>
+    <% end %>
+</div>
