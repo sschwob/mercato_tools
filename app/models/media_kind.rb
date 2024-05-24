@@ -1,0 +1,2 @@
+class MediaKind < ApplicationRecord
+end
