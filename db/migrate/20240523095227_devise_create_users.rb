@@ -34,6 +34,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
 
       t.string :username,   null: false
       t.integer :ally_code, null: false
+      t.string :discord_id, default: nil
       t.boolean :admin,     null: false, default: false
 
       t.timestamps null: false
