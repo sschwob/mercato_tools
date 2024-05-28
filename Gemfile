@@ -55,6 +55,7 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem 'bootstrap', '~> 5.2.2'
 gem 'devise'
 gem 'devise-i18n'
+gem 'cocoon', '~> 1.2', '>= 1.2.9'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

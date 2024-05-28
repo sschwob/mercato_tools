@@ -1,16 +1,23 @@
 <div id="sidebar-container" data-controller="sidebar">
-    <%= link_to "#", class: "link-side-nav", "data-sidebar-target": "link" do %>
-      <span>Utilisateurs</span>
+    <% if user_signed_in? %>
+      <% if current_user.admin? %>
+        <div class="link-side-nav <%= 'active' if current_page?(tournaments_path) %>" data-action="click->sidebar#toggleDropdown">
+          <span>Administration</span>
+        </div>
+        <ul class="admin-panel dropdown-container d-none">
+          <%= link_to "Nouveau Tournoi", new_tournament_path %>
+        </ul>
+      <% end %>
     <% end %>
 
-    <%= link_to "#", class: "link-side-nav", "data-sidebar-target": "link" do %>
+    <%= link_to root_path, class: "link-side-nav #{'active' if current_page?(root_path)}", "data-sidebar-target": "link" do %>
       <span>Tournois</span>
     <% end %>
 
-    <div class="link-side-nav <%= 'active' if current_page?(medium_index_path) %>" data-sidebar-media-panel-is-open-value="<%= false %>" data-action="click->sidebar#toggleDropdown">
+    <div class="link-side-nav <%= 'active' if current_page?(medium_index_path) %>" data-action="click->sidebar#toggleDropdown">
         <span>Médiathèque</span>
     </div>
-    <ul class="dropdown-container d-none" data-sidebar-target="mediaDropdownContainer">
+    <ul class="dropdown-container d-none">
         <% @categories.each do |category| %>
             <%= render "shared/category", category: category %>
         <% end %>

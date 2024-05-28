@@ -1,0 +1,55 @@
+<div id="comming-tournament-container" class="tournament-container">
+    <% if @coming_tournament.present? %>
+        <h3 class="text-center">A venir : <%= @coming_tournament.name %><h3>
+        <h6 class="text-center">commence le <%= format_datetime(@coming_tournament.start_date) %></h6>
+        <% if @registration.opened? %>
+            <p class="text-center">Les inscriptions sont actuellements ouvertes ! Fin des inscriptions le <%= format_datetime(@registration.end_date) %></p>
+            <p class="text-center">Nb de participants : <%= @coming_tournament.participant_count %></p>
+            <p class="text-end m-0">
+                <% if user_signed_in? %>
+                    <% if @registration.is_user_registered?(current_user)  %>
+                        Vous êtes déjà inscrit. <%= link_to "Se désinscrire", unregister_tournament_path(@coming_tournament) %>
+                    <% else %>
+                        <%= link_to "S'inscrire", register_tournament_path(@coming_tournament) %>
+                    <% end %>
+                <% else %>
+                    <%= link_to "Connectez-vous pour vous inscrire", new_user_session_path %>
+                <% end %>
+            </p>
+        <% elsif @registration.coming? %>
+            <p class="text-center">Les inscriptions ouvriront le <%= format_datetime(@registration.start_date) %></p>
+        <% else %>
+            <p class="text-center">Inscriptions terminées le <%= format_datetime(@registration.end_date) %></p>
+            <p class="text-center">Nb de participants : <%= @coming_tournament.participant_count %>.
+            <% if user_signed_in? %>
+                <% if user_signed_in? %>
+                    <% if @registration.is_user_registered?(current_user)  %>
+                        Vous êtes inscrit à ce tournoi.
+                    <% else %>
+                        Vous n'êtes pas inscrit à ce tournoi.
+                    <% end %>
+                <% end %>
+            <% end %></p>
+        <% end %>
+    <% else %>
+        <h3 class="text-center">Aucun tournoi prévu pour le moment<h3>
+    <% end %>
+    
+    <%= render "team_list", tournament: @coming_tournament %>
+</div>
+
+<% if @current_tournament.present? %>
+    <div id="current-tournament-container" class="tournament-container">
+        <h3 class="text-center">En cours : <%= @current_tournament.name %><h3>
+        <h6 class="text-center">a commencé le <%= format_datetime(@current_tournament.start_date) %></h6>
+        <h6 class="text-center">termine le <%= format_datetime(@current_tournament.end_date) %></h6>
+        <p class="text-center">Nb de participants : <%= @current_tournament.participant_count %></p>
+
+        <%= render "team_list", tournament: @current_tournament %>
+    </div>
+<% end %>
+
+<% if @ended_tournaments.present? %>
+    <div id="endend-tournaments-container">
+    </div>
+<% end %>

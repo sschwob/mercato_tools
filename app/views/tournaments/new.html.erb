@@ -1,0 +1,23 @@
+<h1 class="text-center">Créer un nouveau tournoi</h1>
+
+<div id="form-tournament-container">
+    <%= simple_form_for @tournament do |f| %>
+        <%= f.input :name, label: "Nom", require: true %>
+        <div class="d-flex justify-content-between">
+            <%= f.input :start_date, label: "Date de début", as: :datetime, html5: true, require: true, start_date: Date.today %>
+            <%= f.input :end_date, label: "Date de fin", as: :datetime, html5: true, require: true %>
+        </div>
+
+        <%= f.simple_fields_for :registrations do |r| %>
+            <h5 class="text-center">Inscriptions</h5>
+            <div class="d-flex justify-content-between">
+                <%= r.input :start_date, label: "Date de début", as: :datetime, html5: true, require: true %>
+                <%= r.input :end_date, label: "Date de fin", as: :datetime, html5: true, require: true %>
+            </div>
+        <% end %>
+
+        <div class="form-btn d-flex justify-content-center">
+            <%= f.submit "Valider", class: "submit-btn" %>
+        </div>
+    <% end %>
+</div>

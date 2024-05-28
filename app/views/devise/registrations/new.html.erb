@@ -1,4 +1,4 @@
-<div id="devise-form_container">
+<div id="devise-form_container" data-controller="register">
   <h2><% t(".sign_up") %></h2>
   <h1>MERCATO TOOLS</h1>
 
@@ -6,16 +6,15 @@
     <%= f.error_notification %>
 
     <div class="form-inputs">
-      <%= f.input :username,
-                  placeholder: "Pseudo",
-                  label: false,
-                  required: true,
-                  autofocus: true %>
       <%= f.input :ally_code,
                   placeholder: "Code allié SWGOH",
                   label: false,
                   required: true,
-                  autofocus: true %>
+                  autofocus: true,
+                  input_html: { "data-register-target": "allyCodeField" } %>
+      <%= f.input :discord_id,
+                  placeholder: "Identifiant Discord",
+                  label: false %>
       <%= f.input :email,
                   placeholder: "Email",
                   label: false,
@@ -36,7 +35,8 @@
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit, "Créer le compte" %>
+      <div class="btn btn-primary" data-action="click->register#verifyAllyCode" data-register-target="verifyBtn">Vérifier le code allié</div>
+      <%= f.button :submit, "Créer le compte", class: "d-none", "data-register-target": "submitBtn" %>
     </div>
   <% end %>
 

@@ -9,6 +9,11 @@
         margin-bottom: 20px;
     }
 
+    input:read-only {
+        background-color: lightslategray;
+    }
+      
+
     .form-actions {
         margin: 30px 0;
         display: flex;
