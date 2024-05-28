@@ -30,3 +30,8 @@ Medium.create!(name: "Guide Jedi Luke ! Tous les niveaux en détail", source: "T
 Medium.create!(name: "JKL contre presque toutes les GL avec ce Datacron", source: "1yfqfE0Hedw", media_kind: MediaKind.first, categorisable: Subcategory.first)
 Medium.create!(name: "Chevalier Jedi Luke Skywalker", source: "iQ6kcsujWH4", media_kind: MediaKind.first, categorisable: Subcategory.first)
 Medium.create!(name: "Unlocking Jedi Knight Luke Skywalker for FREE in 2023", source: "n26A76spcJw", media_kind: MediaKind.first, categorisable: Subcategory.first)
+
+p "===== Création des users ====="
+User.create(ally_code: 959947962, email: "test1@test.com", password: "password", admin: true)
+User.create(ally_code: 311761761, email: "test2@test.com", password: "password")
+User.create(ally_code: 513688711, email: "test3@test.com", password: "password")

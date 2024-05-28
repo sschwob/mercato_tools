@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_24_073431) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_24_202601) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -49,12 +49,57 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_073431) do
     t.index ["user_id"], name: "index_player_infos_on_user_id"
   end
 
+  create_table "registrations", force: :cascade do |t|
+    t.bigint "tournament_id", null: false
+    t.datetime "start_date", null: false
+    t.datetime "end_date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tournament_id"], name: "index_registrations_on_tournament_id"
+  end
+
   create_table "subcategories", force: :cascade do |t|
     t.bigint "category_id", null: false
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_subcategories_on_category_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.bigint "tournament_id", null: false
+    t.string "name", null: false
+    t.integer "points", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tournament_id"], name: "index_teams_on_tournament_id"
+  end
+
+  create_table "tournaments", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "start_date", null: false
+    t.datetime "end_date", null: false
+    t.string "status", default: "coming", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_registrations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "registration_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["registration_id"], name: "index_user_registrations_on_registration_id"
+    t.index ["user_id"], name: "index_user_registrations_on_user_id"
+  end
+
+  create_table "user_teams", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "team_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_user_teams_on_team_id"
+    t.index ["user_id"], name: "index_user_teams_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -77,5 +122,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_073431) do
 
   add_foreign_key "media", "media_kinds"
   add_foreign_key "player_infos", "users"
+  add_foreign_key "registrations", "tournaments"
   add_foreign_key "subcategories", "categories"
+  add_foreign_key "teams", "tournaments"
+  add_foreign_key "user_registrations", "registrations"
+  add_foreign_key "user_registrations", "users"
+  add_foreign_key "user_teams", "teams"
+  add_foreign_key "user_teams", "users"
 end

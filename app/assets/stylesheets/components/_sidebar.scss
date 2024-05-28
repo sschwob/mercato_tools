@@ -19,6 +19,16 @@
         color: $my-primary;
     }
 
+    .admin-panel {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        a {
+            text-align: center;
+            color: white;
+        }
+    }
+
     li {
         font-size: 14px;
         cursor: pointer;
