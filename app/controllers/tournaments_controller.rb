@@ -1,6 +1,6 @@
 class TournamentsController < ApplicationController
     skip_before_action :authenticate_user!, only: [:index]
-    before_action :find_tournament, only: [:register, :unregister]
+    before_action :find_tournament, only: [:register, :unregister, :close_registrations, :open_registrations, :reopen_registrations]
 
     def index
         @coming_tournament = Tournament.find_by(status: "coming")
@@ -17,7 +17,7 @@ class TournamentsController < ApplicationController
     def create
         @tournament = Tournament.new(tournament_params)
         if @tournament.save
-            redirect_to tournaments_path(@tournament), notice: "Le Tournoi a été crée avec succès"
+            redirect_to root_path, notice: "Le Tournoi a été crée avec succès"
         else
             render :new, status: 422
         end
@@ -34,6 +34,21 @@ class TournamentsController < ApplicationController
         user_registration = UserRegistration.find_by(registration: @registration, user: current_user)
         user_registration.destroy if user_registration
         redirect_to root_path, notice: "Vous n'êtes plus inscrit à ce tournoi."
+    end
+
+    def open_registrations
+        TournamentRegistrationService.new(@tournament).open_registrations
+        redirect_to root_path, notice: "Les inscriptions sont ouvertes pour ce tournoi."
+    end
+
+    def close_registrations
+        TournamentRegistrationService.new(@tournament).close_registrations
+        redirect_to root_path, notice: "Les inscriptions sont fermées pour ce tournoi."
+    end
+
+    def reopen_registrations
+        TournamentRegistrationService.new(@tournament).reopen_registrations
+        redirect_to root_path, notice: "Les inscriptions sont réouvertes pour ce tournoi."
     end
 
     private

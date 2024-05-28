@@ -1,16 +1,17 @@
-<div id="comming-tournament-container" class="tournament-container">
+<div id="comming-tournament-container" class="tournament-container" style="<%= current_user&.admin? && @coming_tournament.present? ? "padding-top: 50px;" : "padding-top: 20px;" %>">
     <% if @coming_tournament.present? %>
+        <%= render "admin_panel", tournament: @coming_tournament if current_user&.admin? %>
         <h3 class="text-center">A venir : <%= @coming_tournament.name %><h3>
         <h6 class="text-center">commence le <%= format_datetime(@coming_tournament.start_date) %></h6>
         <% if @registration.opened? %>
             <p class="text-center">Les inscriptions sont actuellements ouvertes ! Fin des inscriptions le <%= format_datetime(@registration.end_date) %></p>
             <p class="text-center">Nb de participants : <%= @coming_tournament.participant_count %></p>
-            <p class="text-end m-0">
+            <p class="text-center m-0">
                 <% if user_signed_in? %>
                     <% if @registration.is_user_registered?(current_user)  %>
-                        Vous êtes déjà inscrit. <%= link_to "Se désinscrire", unregister_tournament_path(@coming_tournament) %>
+                        Vous êtes déjà inscrit. <%= link_to "Se désinscrire", unregister_tournament_path(@coming_tournament), "data-turbo-prefetch": false %>
                     <% else %>
-                        <%= link_to "S'inscrire", register_tournament_path(@coming_tournament) %>
+                        <%= link_to "S'inscrire", register_tournament_path(@coming_tournament), "data-turbo-prefetch": false %>
                     <% end %>
                 <% else %>
                     <%= link_to "Connectez-vous pour vous inscrire", new_user_session_path %>
@@ -30,12 +31,12 @@
                     <% end %>
                 <% end %>
             <% end %></p>
+
+            <%= render "team_list", tournament: @coming_tournament %>
         <% end %>
     <% else %>
         <h3 class="text-center">Aucun tournoi prévu pour le moment<h3>
     <% end %>
-    
-    <%= render "team_list", tournament: @coming_tournament %>
 </div>
 
 <% if @current_tournament.present? %>

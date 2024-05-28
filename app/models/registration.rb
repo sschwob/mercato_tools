@@ -24,6 +24,10 @@ class Registration < ApplicationRecord
     status == "coming"
   end
 
+  def closed?
+    status == "closed"
+  end
+
   def is_user_registered?(user)
     UserRegistration.find_by(user_id: user.id).present?
   end
