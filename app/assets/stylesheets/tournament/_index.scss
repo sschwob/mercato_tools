@@ -19,11 +19,20 @@
             align-items: center;
             justify-content: space-around;
         }
-        .fas {
+        .fa-eye-slash, .fa-eye {
             cursor: pointer;
             position: absolute;
             top: 17px;
             right: 12px;
+        }
+        .team-color-1 {
+            color: #ffd700;
+        }
+        .team-color-2 {
+            color: #C0C0C0;
+        }
+        .team-color-3 {
+            color: #614E1A;
         }
     }
 }

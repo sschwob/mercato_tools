@@ -1,12 +1,12 @@
-<li class="sidebar-category" data-action="click->sidebar#toggleCategory" data-sidebar-target="category">
+<li class="sidebar-category">
     <% if category.has_subcategories? %>
-        <%= category.name %>
+        <span data-action="click->sidebar#toggleDropdown"><%= category.name %></span>
         <ul class="d-none">
-            <% category.subcategories.each do |subcategory| %>
-                <li><%= link_to subcategory.name, medium_index_path(id: subcategory.id, type: "Subcategory") %></li>
+            <% category.subcategories.order(:name).each do |subcategory| %>
+                <li><%= link_to_if subcategory.has_content?, subcategory.name, contents_path(id: subcategory.id) %></li>
             <% end %>
         </ul>
     <% else %>
-        <%= link_to category.name, medium_index_path(id: category.id, type: "Category") %>
+        <%= link_to_if category.has_content?, category.name, contents_path(id: category.id) %>
     <% end %>
 </li>

@@ -11,3 +11,17 @@
     justify-content: end;
     border-radius: 6px 6px 0 0;
 }
+
+.content-admin-panel {
+    background-color: $darker-background;
+    width: 100%;
+    padding: 0 10px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    border-radius: 6px 6px 0 0;
+    i {
+        margin-right: 10px;
+    }
+}

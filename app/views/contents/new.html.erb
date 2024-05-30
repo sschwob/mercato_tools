@@ -1,0 +1,25 @@
+<h1 class="text-center">Ajouter un nouveau média</h1>
+
+<div id="form-content-container">
+    <%= simple_form_for @content do |f| %>
+        <%= f.input :name, label: "Nom", require: true, placeholder: "Nom du contenu" %>
+        <%= f.input :media_kind_id, label: "Type de contenu", collection: MediaKind.all, include_blank: false %>
+        <%= f.input :language, label: "Langue", collection: Content::LANGUAGES, include_blank: false %>
+        <%= f.input :source, label: "Source du contenu", require: true, placeholder: "ID Youtube (ex: TLcY31dtDx0) de la vidéo ou url de l'image/lien" %>
+        <%= f.input :description, label: "Description", placeholder: "Courte description du contenu" %>
+        <%= f.input :category_id,
+                    label: "Catégorie",
+                    include_blank: false,
+                    as: :grouped_select,
+                    collection: grouped_category_options_for_select,
+                    group_label_method: :first,
+                    group_method: :last %>
+        <% if current_user.admin? %>
+            <%= f.input :enable, label: "En ligne" %>
+        <% end %>
+
+        <div class="form-btn d-flex justify-content-center">
+            <%= f.submit "Valider", class: "submit-btn" %>
+        </div>
+    <% end %>
+</div>

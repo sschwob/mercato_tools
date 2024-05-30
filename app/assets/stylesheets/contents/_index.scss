@@ -1,19 +1,21 @@
-@import "media_card";
+@import "content_card";
+@import "show";
+@import "new";
 
-#media-container {
+#content-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-row-gap: 24px;
 }
 
 @media(max-width: 1600px) {
-    #media-container {
+    #content-container {
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }
 
 @media(max-width: 1300px) {
-    #media-container {
+    #content-container {
         grid-template-columns: 1fr 1fr 1fr;
     }
 }

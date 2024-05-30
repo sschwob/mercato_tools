@@ -1,0 +1,10 @@
+<% if @contents.present? %>
+    <h1 class="text-center"><%= @contents.first.category.name %></h1>
+    <div id="content-container">
+        <% @contents.each do |content| %>
+            <%= render "content_card", content: content %>
+        <% end %>
+    </div>
+<% else %>
+    Aucun contenu disponible.
+<% end %>

@@ -11,6 +11,9 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <%= link_to "proposer un contenu", new_content_path %>
+          </li>
         <% if user_signed_in? %>
           <li class="nav-item">
             <%= link_to "paramètres", edit_user_registration_path(current_user) %>
