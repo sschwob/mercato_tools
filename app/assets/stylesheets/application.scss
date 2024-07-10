@@ -10,7 +10,7 @@
 // Your CSS partials
 @import "components/index";
 @import "devise/index";
-@import "medium/index";
+@import "contents/index";
 @import "pages/index";
 @import "tournament/index";
 
@@ -32,4 +32,8 @@ a {
     &:hover {
         color: inherit;
     }
+}
+
+h1, h2, h3, h4, h5 {
+    margin-bottom: 0;
 }

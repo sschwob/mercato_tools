@@ -1,0 +1,112 @@
+{
+    "categories": [
+        {
+            "name": "Conquête",
+            "subcategories": []
+        },
+        {
+            "name": "Datacrons",
+            "subcategories": []
+        },
+        {
+            "name": "Omicrons",
+            "subcategories": []
+        },
+        {
+            "name": "Zêtas",
+            "subcategories": []
+        },
+        {
+            "name": "Modules",
+            "subcategories": []
+        },
+        {
+            "name": "Grande Arène",
+            "subcategories": []
+        },
+        {
+            "name": "Défis Galactiques",
+            "subcategories": []
+        },
+        {
+            "name": "Vaisseaux Amiraux",
+            "subcategories": []
+        },
+        {
+            "name": "Personnages de Conquête",
+            "subcategories": []
+        },
+        {
+            "name": "Terrain d'Essai",
+            "subcategories": []
+        },
+        {
+            "name": "Factions",
+            "subcategories": []
+        },
+        {
+            "name": "Guerres de Territoires",
+            "subcategories": []
+        },
+        {
+            "name": "Batailles de Territoires",
+            "subcategories": []
+        },
+        {
+            "name": "Personnages Légendaires",
+            "subcategories": [
+                "Empereur Palpatine",
+                "Grand Maître Yoda",
+                "Grand Amiral Thrawn",
+                "R2D2", 
+                "BB8", 
+                "Chevalier Jedi Cal Kestis",
+                "Padmé Amidala",
+                "Commandant Luke Skywalker",
+                "Rey (entraînement de Jedi)",
+                "Le Mandalorien (Armure de Beskar)",
+                "Jar Jar Binks",
+                "Docteur Aphra",
+                "Grand Inquisiteur",
+                "Starkiller",
+                "Chevalier Jedi Revan",
+                "Dark Revan",
+                "Chewbacca",
+                "C-3PO",
+                "Dark Malak",
+                "Général Skywalker",
+                "Chevalier Jedi Luke Skywalker",
+                "Bo-Katan (Mand'alor)"
+            ]
+        },
+        { 
+            "name": "Légendes Galactiques",
+            "subcategories": [
+                "Leia Organa",
+                "Jabba le Hutt",
+                "Lord Vador",
+                "Maître Jedi Kenobi",
+                "Maître Jedi Luke Skywalker",
+                "Empereur Eternel Sith",
+                "Suprême Leader Kylo Ren",
+                "Rey"
+            ]
+        },
+        {
+            "name": "Reliques",
+            "subcategories": []
+        },
+        {
+            "name": "Raids",
+            "subcategories": []
+        },
+        {
+            "name": "Batailles d'Assault",
+            "subcategories": []
+        },
+        {
+            "name": "Equipement",
+            "subcategories": []
+        }
+    ]
+}

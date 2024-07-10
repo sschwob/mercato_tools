@@ -1,5 +1,5 @@
 class MediaKind < ApplicationRecord
-    has_many :medium
+    has_many :contents
 
     validates :name, presence: true
 end

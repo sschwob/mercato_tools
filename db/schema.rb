@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_24_202601) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_28_183122) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,20 +18,24 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_202601) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "parent_id"
+    t.index ["parent_id"], name: "index_categories_on_parent_id"
   end
 
-  create_table "media", force: :cascade do |t|
+  create_table "contents", force: :cascade do |t|
+    t.bigint "user_id"
     t.bigint "media_kind_id", null: false
-    t.string "categorisable_type", null: false
-    t.bigint "categorisable_id", null: false
+    t.bigint "category_id"
     t.string "name", null: false
     t.string "language", default: "FR", null: false
     t.string "source", null: false
     t.text "description", default: ""
+    t.boolean "enable", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["categorisable_type", "categorisable_id"], name: "index_media_on_categorisable"
-    t.index ["media_kind_id"], name: "index_media_on_media_kind_id"
+    t.index ["category_id"], name: "index_contents_on_category_id"
+    t.index ["media_kind_id"], name: "index_contents_on_media_kind_id"
+    t.index ["user_id"], name: "index_contents_on_user_id"
   end
 
   create_table "media_kinds", force: :cascade do |t|
@@ -56,14 +60,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_202601) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tournament_id"], name: "index_registrations_on_tournament_id"
-  end
-
-  create_table "subcategories", force: :cascade do |t|
-    t.bigint "category_id", null: false
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_subcategories_on_category_id"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -120,10 +116,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_202601) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  add_foreign_key "media", "media_kinds"
+  add_foreign_key "categories", "categories", column: "parent_id"
+  add_foreign_key "contents", "categories"
+  add_foreign_key "contents", "media_kinds"
+  add_foreign_key "contents", "users"
   add_foreign_key "player_infos", "users"
   add_foreign_key "registrations", "tournaments"
-  add_foreign_key "subcategories", "categories"
   add_foreign_key "teams", "tournaments"
   add_foreign_key "user_registrations", "registrations"
   add_foreign_key "user_registrations", "users"

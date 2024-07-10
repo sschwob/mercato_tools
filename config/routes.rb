@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "tournaments#index"
+  root to: "pages#home"
   
-  # Medium
-  resources :medium, only: [:index]
+  # Contents
+  resources :contents
+  get "publish/:id", to: "contents#publish_content", as: :publish
+  get "unpublish/:id", to: "contents#unpublish_content", as: :unpublish
+  get "toValidate", to: "contents#contents_to_validate", as: :to_validate
 
   # Tournaments
-  resources :tournaments, only: [:new, :create]
+  resources :tournaments, only: [:index, :new, :create]
   get "register/:id", to: "tournaments#register", as: :register_tournament
   get "unregister/:id", to: "tournaments#unregister", as: :unregister_tournament
   get "closeRegistrations/:id", to: "tournaments#close_registrations", as: :close_registrations

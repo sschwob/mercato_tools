@@ -14,4 +14,10 @@ class ApplicationController < ActionController::Base
     # For additional in app/views/devise/registrations/edit.html.erb
     devise_parameter_sanitizer.permit(:account_update, keys: [:ally_code, :discord_id])
   end
+
+  def check_user_admin
+    unless current_user.admin?
+      redirect_to root_path, notice: "Vous n'avez pas accès à cette page."
+    end
+  end
 end

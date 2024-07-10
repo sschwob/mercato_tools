@@ -29,10 +29,11 @@ class Tournament < ApplicationRecord
 
   def create_teams
     team_count = participant_count / 3
+    teams_names = ImportService.import_teams.shuffle!
     participant_infos = PlayerInfo.where(user: self.users).order(skill_rating: :desc)
     participant_tiers = participant_infos.each_slice(team_count).to_a
     team_count.times do |n|
-      new_team = Team.new(name: Team::NAMES[n], tournament: self)
+      new_team = Team.create(name: teams_names[n], tournament: self)
       if new_team.save
         3.times { |i| UserTeam.create(team: new_team, user_id: participant_tiers[i][n].user_id) }
       end

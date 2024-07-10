@@ -1,25 +1,30 @@
 <div id="sidebar-container" data-controller="sidebar">
-    <% if user_signed_in? %>
-      <% if current_user.admin? %>
-        <div class="link-side-nav <%= 'active' if current_page?(tournaments_path) %>" data-action="click->sidebar#toggleDropdown">
-          <span>Administration</span>
-        </div>
-        <ul class="admin-panel dropdown-container d-none">
-          <%= link_to "Nouveau Tournoi", new_tournament_path %>
-        </ul>
+  <% if user_signed_in? %>
+    <% if current_user.admin? %>
+      <div class="link-side-nav <%= 'active' if current_page?(new_tournament_path) || current_page?(to_validate_path) %>" data-action="click->sidebar#toggleDropdown">
+        <span>Administration</span>
+      </div>
+      <ul class="admin-panel dropdown-container d-none">
+        <li><%= link_to "Nouveau Tournoi", new_tournament_path %></li>
+        <li><%= link_to "Nouveaux Contenus", to_validate_path %></li>
+      </ul>
+    <% end %>
+  <% end %>
+
+  <%= link_to root_path, class: "link-side-nav #{'active' if current_page?(root_path)}" do %>
+    <span>Accueil</span>
+  <% end %>
+
+  <%= link_to tournaments_path, class: "link-side-nav #{'active' if current_page?(tournaments_path)}", "data-sidebar-target": "link" do %>
+    <span>Tournois</span>
+  <% end %>
+
+  <div class="link-side-nav <%= 'active' if current_page?(contents_path) %>" data-action="click->sidebar#toggleDropdown">
+    <span>Médiathèque</span>
+  </div>
+  <ul class="dropdown-container d-none">
+      <% Category.sidebar_categories.each do |category| %>
+          <%= render "shared/category", category: category %>
       <% end %>
-    <% end %>
-
-    <%= link_to root_path, class: "link-side-nav #{'active' if current_page?(root_path)}", "data-sidebar-target": "link" do %>
-      <span>Tournois</span>
-    <% end %>
-
-    <div class="link-side-nav <%= 'active' if current_page?(medium_index_path) %>" data-action="click->sidebar#toggleDropdown">
-        <span>Médiathèque</span>
-    </div>
-    <ul class="dropdown-container d-none">
-        <% @categories.each do |category| %>
-            <%= render "shared/category", category: category %>
-        <% end %>
-    </ul>
+  </ul>
 </div>
