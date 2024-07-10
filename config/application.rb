@@ -30,5 +30,6 @@ module MercatoTools
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     config.hosts << "mercatotools-oemvv5kr.b4a.run"
+    config.hosts << "node85a.containers.back4app.com:5051"
   end
 end
