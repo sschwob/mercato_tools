@@ -82,5 +82,3 @@ test:
 production:
   <<: *default
   database: mercato_tools_production
-  username: mercato_tools
-  password: <%= ENV["MERCATO_TOOLS_DATABASE_PASSWORD"] %>
