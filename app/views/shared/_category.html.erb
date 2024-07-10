@@ -1,0 +1,12 @@
+<li class="sidebar-category">
+    <% if category.has_subcategories? %>
+        <span data-action="click->sidebar#toggleDropdown"><%= category.name %></span>
+        <ul class="d-none">
+            <% category.subcategories.order(:name).each do |subcategory| %>
+                <li><%= link_to_if subcategory.has_content?, subcategory.name, contents_path(id: subcategory.id) %></li>
+            <% end %>
+        </ul>
+    <% else %>
+        <%= link_to_if category.has_content?, category.name, contents_path(id: category.id) %>
+    <% end %>
+</li>

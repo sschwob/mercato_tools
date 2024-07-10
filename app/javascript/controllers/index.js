@@ -4,5 +4,11 @@
 
 import { application } from "./application"
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+import SidebarController from "./sidebar_controller"
+application.register("sidebar", SidebarController)
+
+import RegisterController from "./register_controller"
+application.register("register", RegisterController)
+
+import ToggleController from "./toggle_controller"
+application.register("toggle", ToggleController)

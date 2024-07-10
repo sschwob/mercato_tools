@@ -1,0 +1,17 @@
+<div class="tournament-admin-panel">
+    <% if tournament.coming? %>
+        <% if tournament.registration.coming? %>
+            <%= link_to open_registrations_path(tournament), "data-turbo-prefetch": false do %>
+                Débuter les inscriptions  <i class="fas fa-lock-open"></i>
+            <% end %>
+        <% elsif tournament.registration.opened? %>
+            <%= link_to close_registrations_path(tournament), "data-turbo-prefetch": false, data: { turbo_confirm: 'Êtes-vous sûrs ?' } do %>
+                Fermer les inscriptions  <i class="fas fa-lock"></i>
+            <% end %>
+        <% else %>
+            <%= link_to reopen_registrations_path(tournament), "data-turbo-prefetch": false do %>
+                Réouvrir les inscriptions  <i class="fas fa-lock-open"></i>
+            <% end %>
+        <% end %>
+    <% end %>
+</div>
