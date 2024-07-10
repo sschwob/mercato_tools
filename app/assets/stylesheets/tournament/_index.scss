@@ -1,0 +1,38 @@
+@import "new";
+
+.tournament-container {
+    position: relative;
+    margin: 20px;
+    padding: 20px;
+    background-color: $light-background;
+    border-radius: 6px;
+
+    .team-list {
+        position: relative;
+        background-color: $dark-background;
+        border-radius: 6px;
+        width: 80%;
+        padding: 12px;
+        margin: 8px auto;
+        .team-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+        .fa-eye-slash, .fa-eye {
+            cursor: pointer;
+            position: absolute;
+            top: 17px;
+            right: 12px;
+        }
+        .team-color-1 {
+            color: #ffd700;
+        }
+        .team-color-2 {
+            color: #C0C0C0;
+        }
+        .team-color-3 {
+            color: #614E1A;
+        }
+    }
+}

@@ -1,0 +1,10 @@
+<%= link_to content_path(content) do %>
+    <tr>
+        <td><%= format_datetime(content.created_at) %></td>
+        <td><%= content.user&.username %></td>
+        <td><%= content.name %></td>
+        <td><%= content.media_kind.name %></td>
+        <td><%= content.category.name %></td>
+        <td class="text-center"><%= link_to "<i class='fas fa-eye'></i>".html_safe, content_path(content)  %></td>
+    </tr>
+<% end %>

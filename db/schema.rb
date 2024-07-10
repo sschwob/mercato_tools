@@ -10,8 +10,121 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_28_183122) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "parent_id"
+    t.index ["parent_id"], name: "index_categories_on_parent_id"
+  end
+
+  create_table "contents", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "media_kind_id", null: false
+    t.bigint "category_id"
+    t.string "name", null: false
+    t.string "language", default: "FR", null: false
+    t.string "source", null: false
+    t.text "description", default: ""
+    t.boolean "enable", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_contents_on_category_id"
+    t.index ["media_kind_id"], name: "index_contents_on_media_kind_id"
+    t.index ["user_id"], name: "index_contents_on_user_id"
+  end
+
+  create_table "media_kinds", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "player_infos", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "skill_rating"
+    t.string "portrait_image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_player_infos_on_user_id"
+  end
+
+  create_table "registrations", force: :cascade do |t|
+    t.bigint "tournament_id", null: false
+    t.datetime "start_date", null: false
+    t.datetime "end_date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tournament_id"], name: "index_registrations_on_tournament_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.bigint "tournament_id", null: false
+    t.string "name", null: false
+    t.integer "points", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tournament_id"], name: "index_teams_on_tournament_id"
+  end
+
+  create_table "tournaments", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "start_date", null: false
+    t.datetime "end_date", null: false
+    t.string "status", default: "coming", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_registrations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "registration_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["registration_id"], name: "index_user_registrations_on_registration_id"
+    t.index ["user_id"], name: "index_user_registrations_on_user_id"
+  end
+
+  create_table "user_teams", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "team_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_user_teams_on_team_id"
+    t.index ["user_id"], name: "index_user_teams_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "username", null: false
+    t.integer "ally_code", null: false
+    t.string "discord_id"
+    t.boolean "admin", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ally_code"], name: "index_users_on_ally_code", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
+  end
+
+  add_foreign_key "categories", "categories", column: "parent_id"
+  add_foreign_key "contents", "categories"
+  add_foreign_key "contents", "media_kinds"
+  add_foreign_key "contents", "users"
+  add_foreign_key "player_infos", "users"
+  add_foreign_key "registrations", "tournaments"
+  add_foreign_key "teams", "tournaments"
+  add_foreign_key "user_registrations", "registrations"
+  add_foreign_key "user_registrations", "users"
+  add_foreign_key "user_teams", "teams"
+  add_foreign_key "user_teams", "users"
 end

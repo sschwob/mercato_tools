@@ -1,0 +1,10 @@
+<div class="team-row">
+    <div class="text-center" style="flex: 0 0 5%;"><b>N°</b></div>
+    <div class="text-center" style="<%= tournement_coming ? "flex: 0 0 20%;" : "flex: 0 0 10%;" %>"><b>Nom</b></div>
+    <div class="text-center" style="flex: 0 0 20%;"><b>Joueur 1</b></div>
+    <div class="text-center" style="flex: 0 0 20%;"><b>Joueur 2</b></div>
+    <div class="text-center" style="flex: 0 0 20%;"><b>Joueur 3</b></div>
+    <% unless tournement_coming %>
+        <div class="text-center" style="flex: 0 0 5%;">Points</div>
+    <% end %>
+</div>

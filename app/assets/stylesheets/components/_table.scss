@@ -1,0 +1,24 @@
+table {
+    border-collapse: separate;
+    border-spacing: 3px 6px;
+}
+
+th {
+    text-align: center;
+    background-color: black;
+    color: white;
+    border-radius: 6px 6px 0 0;
+}
+
+th, td {
+    max-width:100%;
+    white-space:nowrap;
+    padding: 0 5px;
+}
+
+tr {
+    background-color: rgb(80, 80, 80);
+    &:nth-child(2n) {
+        background-color: rgb(120, 120, 120);
+    }
+}
