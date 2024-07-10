@@ -5,7 +5,7 @@
                 Débuter les inscriptions  <i class="fas fa-lock-open"></i>
             <% end %>
         <% elsif tournament.registration.opened? %>
-            <%= link_to close_registrations_path(tournament), "data-turbo-prefetch": false, data: { turbo_confirm: 'Are you sure?' } do %>
+            <%= link_to close_registrations_path(tournament), "data-turbo-prefetch": false, data: { turbo_confirm: 'Êtes-vous sûrs ?' } do %>
                 Fermer les inscriptions  <i class="fas fa-lock"></i>
             <% end %>
         <% else %>

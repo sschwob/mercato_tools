@@ -1,5 +1,3 @@
-require json
-
 class Tournament < ApplicationRecord
   has_many :registrations, dependent: :destroy
   accepts_nested_attributes_for :registrations, reject_if: :all_blank

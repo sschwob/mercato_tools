@@ -2,12 +2,12 @@
     <% if current_user&.admin? %>
         <div class="content-admin-panel">
             <% if @content.enable %>
-                <%= link_to "<i class='fas fa-circle-xmark'></i>".html_safe, "#" %>
+                <%= link_to "<i class='fas fa-circle-xmark'></i>".html_safe, unpublish_path(@content), "data-turbo-prefetch": false %>
             <% else %>
-                <%= link_to "<i class='fas fa-check'></i>".html_safe, "#" %>
+                <%= link_to "<i class='fas fa-check'></i>".html_safe, publish_path(@content), "data-turbo-prefetch": false %>
             <% end %>
-            <%= link_to "<i class='fas fa-pencil'></i>".html_safe, "#" %>
-            <%= link_to "<i class='fas fa-trash'></i>".html_safe, "#" %>
+            <%= link_to "<i class='fas fa-pencil'></i>".html_safe, edit_content_path(@content), "data-turbo-prefetch": false %>
+            <%= link_to "<i class='fas fa-trash'></i>".html_safe, @content, data: { turbo_method: :delete, turbo_confirm: 'Êtes-vous sûrs de vouloir supprimer ce contenu ?' }, "data-turbo-prefetch": false %>
         </div>
     <% end %>
     <h4 class="text-center"><%= @content.name %></h4>
@@ -23,6 +23,15 @@
                 <%= image_tag(@content.source) %>
             </div>
         <% else %>
+            <div class="link-container">
+                <%= link_to "<i class='fas fa-link'></i>".html_safe, @content.source %>
+            </div>
         <% end %>
+    </div>
+    <div class="description-container">
+        <%= @content.description %>
+        <div class="d-flex justify-content-end">
+            Publié le : <%= format_datetime(@content.created_at) %>
+        </div>
     </div>
 </div>

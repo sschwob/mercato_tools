@@ -1,6 +1,18 @@
 <div class="content-card">
-    <div class="trailer-movie-container">
-        <iframe src="https://www.youtube.com/embed/<%= content.source %>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-    <%= content.name %>
+    <% if content.video? %>
+        <div class="trailer-movie-container">
+            <iframe src="https://www.youtube.com/embed/<%= content.source %>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    <% elsif content.img? %>
+        <div class="image-container">
+            <%= image_tag(content.source) %>
+        </div>
+    <% else %>
+        <div class="link-container">
+            <%= link_to "<i class='fas fa-link'></i>".html_safe, content.source %>
+        </div>
+    <% end %>
+    <%= link_to content_path(content) do %>
+        <%= content.name %>
+    <% end %>
 </div>

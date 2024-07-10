@@ -1,7 +1,7 @@
 <div id="sidebar-container" data-controller="sidebar">
   <% if user_signed_in? %>
     <% if current_user.admin? %>
-      <div class="link-side-nav <%= 'active' if current_page?(tournaments_path) %>" data-action="click->sidebar#toggleDropdown">
+      <div class="link-side-nav <%= 'active' if current_page?(new_tournament_path) || current_page?(to_validate_path) %>" data-action="click->sidebar#toggleDropdown">
         <span>Administration</span>
       </div>
       <ul class="admin-panel dropdown-container d-none">

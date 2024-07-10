@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   
   # Contents
   resources :contents
+  get "publish/:id", to: "contents#publish_content", as: :publish
+  get "unpublish/:id", to: "contents#unpublish_content", as: :unpublish
   get "toValidate", to: "contents#contents_to_validate", as: :to_validate
 
   # Tournaments

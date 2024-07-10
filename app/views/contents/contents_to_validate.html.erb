@@ -1,5 +1,5 @@
 <div id="admin-content-board">
-    <h5>Contenus à valider : <%= @contents_to_validate.present? ? @contents_to_validate.count : "0" %></h5>
+    <h5 class="m-0">Contenus à valider : <%= @contents_to_validate.present? ? @contents_to_validate.count : "0" %></h5>
     <% if @contents_to_validate.present? %>
         <div class="d-flex justify-content-center">
             <table>
