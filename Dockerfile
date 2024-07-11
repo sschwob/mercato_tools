@@ -11,17 +11,17 @@ ENV RAILS_ENV="production" \
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client yarn
 
 # Set the working directory
-WORKDIR /myapp
+WORKDIR /mercato_tools
 
 # Add the Gemfile and Gemfile.lock to the image
-COPY Gemfile /myapp/Gemfile
-COPY Gemfile.lock /myapp/Gemfile.lock
+COPY Gemfile /mercato_tools/Gemfile
+COPY Gemfile.lock /mercato_tools/Gemfile.lock
 
 # Install gems
 RUN bundle install
 
 # Copy the rest of the application into the image
-COPY . /myapp
+COPY . /mercato_tools
 
 # Expose the port that the Rails server will run on
 EXPOSE 3000
