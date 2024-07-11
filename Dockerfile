@@ -14,6 +14,10 @@ COPY Gemfile.lock /myapp/Gemfile.lock
 # Install gems
 RUN bundle install
 
+RUN rails db:create
+RUN rails db:migrate
+RUN rails db:seed
+
 # Copy the rest of the application into the image
 COPY . /myapp
 

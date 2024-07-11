@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "CLI-mercato_tools": {
+      "applicationId": "WHMxNolso8Lf1QekpMx2r59hYv5FMLmzkXrwN9Bu"
+    },
+    "_default": {
+      "link": "CLI-mercato_tools"
+    }
+  }
+}
