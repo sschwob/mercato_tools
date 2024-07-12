@@ -22,4 +22,8 @@ class Category < ApplicationRecord
     def has_content?
         Content.where(category_id: id).present?
     end
+
+    def contents_count
+        Content.where(category_id: id).count
+    end
 end

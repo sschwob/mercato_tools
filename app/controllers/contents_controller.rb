@@ -1,5 +1,5 @@
 class ContentsController < ApplicationController
-    skip_before_action :authenticate_user!, only: [:index]
+    skip_before_action :authenticate_user!, only: [:index, :show]
     before_action :check_user_admin, only: [:contents_to_validate, :edit, :publish_content]
     before_action :find_content, only: [:show, :edit, :update, :destroy, :publish_content, :unpublish_content]
 
