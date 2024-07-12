@@ -6,3 +6,19 @@
     background-color: $light-background;
     border-radius: 6px;
 }
+
+#home-main-container {
+    .home-container {
+        margin: 20px;
+        padding: 20px;
+        background-color: $light-background;
+        border-radius: 6px;
+        
+        p {
+            font-size: 20px;
+        }
+        li {
+            font-size: 16px;
+        }
+    }
+}

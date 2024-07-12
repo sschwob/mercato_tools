@@ -1,0 +1,23 @@
+<div id="home-main-container">
+    <h1 class="text-center">Actualités</h1>
+
+    <div class="home-container">
+        <h3 class="text-center mb-2">10 derniers contenus publiés<h3>
+        <ul>
+            <% @last_contents.each do |content| %>
+                <li><%= link_to content.name, content_path(content) %></li>
+            <% end %>
+        </ul>
+    </div>
+
+    <div class="home-container">
+        <h3 class="text-center mb-2">Patch Note<h3>
+        
+        <p>Dernière mise à jour : 12/07/2024</p>
+        <ul>
+            <li>Ajout des 10 derniers contenus publiés</li>
+            <li>Ajout des patch notes</li>
+            <li>Mise en ligne version 0.1 du site</li>
+        </ul>
+    </div>
+</div>
