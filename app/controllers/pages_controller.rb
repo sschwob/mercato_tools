@@ -3,5 +3,6 @@ class PagesController < ApplicationController
 
   def home
     @last_contents = Content.where(enable: true).order(created_at: :desc).limit(10)
+    @last_users = User.order(created_at: :desc).limit(10)
   end
 end
